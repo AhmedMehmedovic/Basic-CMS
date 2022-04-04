@@ -1,0 +1,285 @@
+body {
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  display: flex;
+  width: 100%;
+}
+.container {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  display: inline-flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  height: calc(100vh - 60px);
+  position: absolute;
+}
+.zaglavlje {
+  display: flex;
+  position: relative;
+  width: 100%;
+  float: right;
+  height: 60px;
+  background: rgb(172, 165, 165);
+}
+.naslovH {
+  text-align: center;
+  color: white;
+  font-family: cursive;
+
+  display: grid;
+  flex-wrap: nowrap;
+  align-content: center;
+  margin: 0px auto;
+}
+.sidebar {
+  display: flex;
+  width: 13%;
+  background: rgb(172, 165, 165);
+  color: white;
+  text-align: center;
+  font-family: cursive;
+  align-content: stretch;
+  align-items: center;
+  flex-direction: column;
+}
+
+h2 {
+  margin: 0;
+  display: inline-block;
+  color: rgb(70 74 72);
+  text-align: center;
+  font-family: sans-serif;
+  font-weight: 200;
+  padding: 7px;
+}
+
+.emailCheck {
+  height: 70%;
+  width: 49%;
+  background: rgb(230, 220, 220);
+  color: black;
+  border: 1px solid black;
+  text-align: center;
+  display: flex;
+  margin: 0;
+  flex-wrap: wrap;
+  align-content: space-around;
+  justify-content: center;
+}
+.desniMeni {
+  padding: 0;
+
+  height: calc(100vh - 108px);
+  margin: 0;
+  list-style-type: none;
+}
+.linkoviMeni {
+  text-decoration: none;
+  color: azure;
+  font-size: x-large;
+  padding: 0px 78px 0px 38px;
+}
+.linkoviMeni:hover {
+  background-color: #c6c6c6;
+}
+.listaRed {
+  padding: 0px 0px 6px 0px;
+}
+.logo {
+  height: 42px;
+  display: flex;
+  flex-direction: row;
+  padding: 10px 2px;
+}
+.sadržaj {
+  width: 87%;
+
+  background-color: #d9d9d9;
+}
+
+.kutijaSadržaja {
+  padding: 20px;
+  margin: 0;
+  background-color: #d9d9d9;
+}
+
+hr {
+  margin: 20px 0px 20px 0px;
+}
+.broj-prikaza {
+  height: 35px;
+  width: 73px;
+  padding: 10px;
+  background-color: #f7f5f5;
+  color: black;
+  font-weight: bold;
+}
+.tabela-naslov {
+  display: flex;
+}
+.okvir-tražilice {
+  width: 50%;
+  width: 50%;
+  display: flex;
+
+  flex-direction: row-reverse;
+}
+.prvi-clan {
+  width: 50%;
+  display: flex;
+}
+
+.sadrzaj-ispod-tabele {
+  display: flex;
+  width: 100%;
+  background-color: rgb(204 205 205);
+  height: 45px;
+  flex-direction: row;
+}
+.dugmad-strana {
+  display: flex;
+  flex-direction: row-reverse;
+  width: 50%;
+}
+/***********/
+.unosi {
+  display: flex;
+
+  width: 100%;
+  flex-direction: row;
+  flex-wrap: wrap;
+  height: 65px;
+  margin-bottom: 6px;
+}
+.unos2 {
+  display: flex;
+  height: 56%;
+}
+.natpisi {
+  display: block;
+  font-size: large;
+  font-family: cursive;
+  height: 23px;
+
+  width: 100%;
+  padding-left: 10px;
+  padding-bottom: 5px;
+}
+.email {
+  display: block;
+  flex-wrap: wrap;
+  flex-direction: row;
+  height: 30px;
+  width: 100%;
+  text-indent: 10px;
+}
+.input-okvir {
+  display: flex;
+  width: 50%;
+}
+.kutijaSadržaja2 {
+  padding: 10px 10px;
+  margin: 0;
+  background-color: #d9d9d9;
+}
+.dugmeDodaj {
+  height: 30px;
+  width: 106px;
+  border-radius: 15px;
+  background-color: #808999;
+  color: aliceblue;
+}
+.dugmad {
+  display: block;
+  width: 100%;
+  padding-left: 445px;
+  margin-bottom: 6px;
+  height: 28px;
+  align-content: center;
+  width: 223px;
+}
+.spremi {
+  background-color: rgb(24, 16, 141);
+}
+
+.okvirlog {
+  height: 100%;
+  width: 14%;
+  padding: 0px 15px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.trenutni-email {
+  text-decoration: none;
+  color: rgb(54, 52, 52);
+  padding: 10px 90px 18px 85px;
+  font-size: x-large;
+}
+/*modal css */
+.container1 {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: calc(97vh);
+  flex-wrap: nowrap;
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  display: none;
+}
+.labelaForm1 {
+  display: flex;
+  height: 90%;
+  color: #e1e0e0;
+  justify-content: center;
+  font-family: fantasy;
+  font-size: xx-large;
+  align-content: flex-end;
+}
+.okvir2 {
+  margin-top: 12.8vh;
+  background-color: #000;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  width: 60vh;
+  height: 47vh;
+  border-radius: 5vh;
+  justify-content: space-around;
+}
+#listagreska {
+  list-style-type: none;
+  height: 40px;
+  margin-top: 34px;
+  color: azure;
+  font-size: x-large;
+}
+.okvirOkvir {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 23px;
+}
+.dodajModal {
+  opacity: 1;
+  z-index: 2;
+  animation: show 0.6s;
+
+  transform: scale(1);
+}
+@keyframes show {
+  from {
+    transform: scale(0);
+    opacity: 0;
+    z-index: -2;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+    z-index: 3;
+  }
+}

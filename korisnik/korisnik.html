@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="korisnik.css" />
+    <title>BASIC PAGE CMS</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="zaglavlje">
+        <img class="logo" src="logo.png" />
+
+        <h1 class="naslovH">OSNOVNI CMS</h1>
+        <div class="okvirlog">
+          <select class="emailCheck">
+            <option id="korisnik"></option>
+          </select>
+          <button class="emailCheck" id="odjaviSe" onclick="odjaviSe()">
+            Odjavi se
+          </button>
+        </div>
+      </div>
+      <!--Meni sa strane-->
+
+      <div class="sidebar">
+        <ul class="desniMeni">
+          <li class="listaRed">
+            <a class="linkoviMeni" href="/index/index.html">Sadržaj</a>
+          </li>
+          <li class="listaRed">
+            <a class="linkoviMeni" href="/korisnik/korisnik.html">Korisnik</a>
+          </li>
+          <li class="listaRed">
+            <a class="linkoviMeni" href="/Login/login.html">Logo</a>
+          </li>
+        </ul>
+      </div>
+      <div class="sadržaj">
+        <div class="kutijaSadržaja">
+          <!--Vrh sadrzaja -->
+
+          <div class="vrhSadržaja">
+            <h1 class="HSadržaj">Korisnički račun</h1>
+            <hr />
+          </div>
+          <div class="sadrzaj-ispod-tabele">
+            <div class="prvi-clan">
+              <h2>Detalji računa:</h2>
+            </div>
+          </div>
+          <!--DUgme iznad tabele-->
+          <div class="kutijaSadržaja2">
+            <!--Brojac i trazilica iznad tabele-->
+            <form action="#" id="formaDetaljRacuna">
+              <div class="unosi">
+                <label class="natpisi">Email:</label>
+                <div class="input-okvir">
+                  <input id="email" class="email" placeholder="Unesi email" />
+                </div>
+              </div>
+              <div class="unosi">
+                <label class="natpisi">Trenutna šifra:</label>
+                <div class="input-okvir">
+                  <input
+                    id="psw"
+                    class="email"
+                    type="password"
+                    placeholder="Unesi trenutnu šifru"
+                  />
+                </div>
+              </div>
+              <div class="unosi">
+                <label class="natpisi">Nova šifra:</label>
+                <div class="input-okvir">
+                  <input
+                    id="novaSifra"
+                    class="email"
+                    type="password"
+                    placeholder="Unesi šifru"
+                  />
+                </div>
+              </div>
+              <div class="unosi">
+                <label class="natpisi">Potvrdi šifru:</label>
+                <div class="input-okvir">
+                  <input
+                    id="potvrdiSifru"
+                    class="email"
+                    type="password"
+                    placeholder="Potvrdi šifru"
+                  />
+                </div>
+              </div>
+              <div class="unosi">
+                <label class="natpisi">Ime:</label>
+                <div class="input-okvir">
+                  <input id="ime" class="email" placeholder="Unesi ime" />
+                </div>
+              </div>
+              <div class="unosi">
+                <label class="natpisi">Prezime:</label>
+                <div class="input-okvir">
+                  <input
+                    id="prezime"
+                    class="email"
+                    placeholder="Unesi prezime"
+                  />
+                </div>
+              </div>
+
+              <div class="unosi">
+                <label class="natpisi">Adresa:</label>
+                <div class="input-okvir">
+                  <input id="adresa" class="email" placeholder="Unesi adresu" />
+                </div>
+              </div>
+              <div class="unosi">
+                <label class="natpisi">Broj tel:</label>
+                <div class="input-okvir">
+                  <input
+                    id="telefon"
+                    class="email"
+                    placeholder="Unesi broj telefona"
+                  />
+                </div>
+              </div>
+              <div class="dugmad">
+                <button id="spremiKorisnika" class="dugmeDodaj spremi">
+                  Spremi
+                </button>
+                <button id="otkaziUnos" class="dugmeDodaj">Otkaži</button>
+              </div>
+              <div></div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="modal" class="container1 dodajModal">
+      <div class="okvir2">
+        <div class="okvirOkvir">
+          <label class="labelaForm1">Obavijest</label>
+          <button id="zatvoriModal" class="labelaForm1" style="color: #000">
+            &#10006;
+          </button>
+        </div>
+        <div class="unos2">
+          <ul id="listagreska"></ul>
+        </div>
+      </div>
+    </div>
+    <script src="../global/cookies.js"></script>
+
+    <script src="/korisnik/korisnik2.js"></script>
+  </body>
+</html>

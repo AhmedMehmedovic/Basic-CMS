@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="login.css" />
+    <title>Login Forma</title>
+  </head>
+  <body style="background-image: url(herceg-pozadina.jpg)">
+    <div class="container">
+      <div class="okvir">
+        <label class="labelaForm">Prijavi se:</label>
+        <div class="unos">
+          <input
+            id="input"
+            class="input"
+            type="email"
+            placeholder="Unesi email"
+            required
+          />
+
+          <input
+            id="sifra"
+            class="input"
+            type="password"
+            placeholder="Unesi šifru"
+            required
+          />
+          <label class="check">
+            <input type="checkbox" checked="checked" id="zapamti" />
+            Zapamti me
+          </label>
+        </div>
+        <div class="unosDugme">
+          <button
+            id="prijava"
+            type="submit"
+            class="prijava"
+            onclick="dugmePrijava()"
+          >
+            Prijava
+          </button>
+        </div>
+      </div>
+    </div>
+    <div id="modal" class="container1" style="position: absolute">
+      <div class="okvir2">
+        <div
+          style="display: flex; justify-content: space-around; margin-top: 23px"
+        >
+          <label class="labelaForm1">Obavijest</label>
+          <button id="zatvoriModal" class="labelaForm1" style="color: #000">
+            &#10006;
+          </button>
+        </div>
+        <div class="unos2">
+          <ul id="listagreska"></ul>
+        </div>
+      </div>
+    </div>
+
+    <script src="../global/cookies.js"></script>
+    <script src="login.js"></script>
+  </body>
+</html>

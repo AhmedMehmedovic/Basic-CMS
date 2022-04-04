@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="index.css" />
+    <title>BASIC PAGE CMS</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="zaglavlje">
+        <img class="logo" src="logo.png" />
+
+        <h1 class="naslovH">OSNOVNI CMS</h1>
+        <div class="okvirlog">
+        <select class="emailCheck" >          
+          <option id="korisnik" ></option>        
+          
+        </select>
+        <button type="submit" class="emailCheck" id="odjaviSe" onclick="odjaviSe()">Odjavi se</button>
+        </div>
+      </div>
+          <!--Meni sa strane-->
+
+      <div class="sidebar">
+        <ul class="desniMeni">
+          <li class="listaRed">
+            <a class="linkoviMeni" href="index.html">Sadržaj</a>
+          </li>
+          <li class="listaRed">
+            <a class="linkoviMeni" href="/korisnik/korisnik.html">Korisnik</a>
+          </li>
+          <li class="listaRed">
+            <a class="linkoviMeni" href="/Login/login.html">Logo</a>
+          </li>
+        </ul>
+      </div>
+      <div class="sadržaj">
+        <div class="kutijaSadržaja">
+          <!--Vrh sadrzaja -->
+
+          <div class="vrhSadržaja">
+            <h1 class="HSadržaj">Sadržaj tabele</h1>
+            <hr />
+          </div>
+          <!--DUgme iznad tabele-->
+
+          <div class="sredinaSadržaja">
+            <button class="dugmeDodaj" id="dodajSadrzaj">Dodaj</button>
+            <hr />
+          </div>
+          <!--Brojac i trazilica iznad tabele-->
+
+          <div class="tabela-naslov">
+            <div class="prvi-clan">
+              <label>
+                <select class="broj-prikaza">
+                  <option value="10">10</option>
+                  <option value="20">20</option>
+                  <option value="30">30</option>
+                  <option value="40">40</option>
+                  <option value="50">50</option>
+                </select>
+              </label>
+            </div>
+            <div class="okvir-tražilice">
+              <label>
+                <input class="trazilica" type="search" placeholder="Traži" />
+              </label>
+            </div>
+          </div>
+          <!--tabela-->
+
+          <div class="tabela">
+            <div class="okvir-tabele">
+              <table  id="tabela">
+                <thead>
+                  <th>Bilješka</th>
+                  <th>Datum</th>
+                  <th>Opcije</th>
+                </thead>
+                <tbody id="tabelaBody">
+                 <!-- <tr id="tabelaRed">
+                    <td id="bilješka">Hipster Ipsum</td>
+                    <td ></td>
+                    <td id="trecaKolona">
+                      <div class="tipke">
+                        <button type="submit" class="uredi">Uredi</button>
+                        <button type="submit" class="izbriši-tipka">Obriši</button>
+
+                      </div>
+                    </td>
+                  </tr> 
+                  <tr>
+                    <td>Lorem ipsum dolor sit amet</td>
+                    <td>Maria Anders</td>
+                    <td>
+                      <div class="tipke">
+                      <button type="submit" class="uredi">Uredi</button>
+                      <button type="submit" class="izbriši-tipka" id="izbrisiDugme">Obriši</button>
+
+                    </div></td>
+                  </tr> -->
+                
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <!--Prikazano od do-->
+
+          <div class="sadrzaj-ispod-tabele">
+            <div class="prvi-clan">
+              <h3 >
+                Prikazano 1 od <span id="broj-stranice">""</span>broja stranica
+              </h3>
+            </div>
+            <div class="dugmad-strana">
+              
+                <button href="#" class="strelice">&#8250;</button>
+                <a href="#">1</a>
+                <button href="#" class="strelice">&#8249;</button>              
+            </div>
+          </div>
+          <!--Dugme Ispod sadržaja-->
+          <div class="sredinaSadržaja ">
+            <button class="dugmeDodaj" id="dodajTabelu">Dodaj</button>
+            <hr />
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container-modal dodajModal" id="modal">
+      <div class="modal-okvir">
+        <div class="modal-zaglavlje">
+          <h1>Unesi bilješku</h1>
+          <button class="zatvori" id="zatvoriModal">&times;</button>
+        </div>
+        <div class="modal-body">
+          <textarea type="text" class="unosteksta" id="unosteksta" placeholder="Unesi tekst"></textarea>
+          
+        </div>
+        <div class="modal-zaglavlje">
+          <input id="datumModal" type="datetime" name="datum" placeholder="Datum" disabled>
+
+        </div>
+
+        <div class="modal-zaglavlje">
+          <div class="tipke2"> 
+            <input type="hidden" name="row-id" id="edit-row-id">
+          <button  id="spremi" type="submit" class="spremi">Spremi</button> 
+          <button id="otkaziModal" onclick="obriši()" type="button" class="otkazi">Otkaži</button>
+        </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="modal2" class="container1 dodajModal">
+      <div class="okvir2">
+        <div class="okvirOkvir">
+          <label class="labelaForm1">Obavijest</label>
+          <button id="zatvoriModal2" onclick="zatvoriModalGreske()" class="labelaForm1" style="color: #000">
+            &#10006;
+          </button>
+        </div>
+        <div class="unos2">
+          <ul id="listagreska"></ul>
+        </div>
+      </div>
+    </div>
+    <script src="../global/cookies.js"></script>
+    <script src="/index/index.js"></script>
+  </body>
+</html>
