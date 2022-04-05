@@ -56,6 +56,7 @@
             <div class="prvi-clan">
               <label>
                 <select class="broj-prikaza">
+                  <option value="2">2</option>
                   <option value="10">10</option>
                   <option value="20">20</option>
                   <option value="30">30</option>
@@ -72,57 +73,61 @@
           </div>
           <!--tabela-->
 
-          <div class="tabela">
-            <div class="okvir-tabele">
-              <table  id="tabela">
-                <thead>
-                  <th>Bilješka</th>
-                  <th>Datum</th>
-                  <th>Opcije</th>
-                </thead>
-                <tbody id="tabelaBody">
-                 <!-- <tr id="tabelaRed">
-                    <td id="bilješka">Hipster Ipsum</td>
-                    <td ></td>
-                    <td id="trecaKolona">
-                      <div class="tipke">
+          <div class="tabela-podataka">
+            <div class="tabela">
+              <div class="okvir-tabele">
+                <table  id="tabela">
+                  <thead>                  
+                    <th>Bilješka</th>
+                    <th>Datum</th>
+                    <th>Opcije</th>
+                  </thead>
+                  <tbody id="tabelaBody">
+                   <!-- <tr id="tabelaRed">
+                      <td id="bilješka">Hipster Ipsum</td>
+                      <td ></td>
+                      <td id="trecaKolona">
+                        <div class="tipke">
+                          <button type="submit" class="uredi">Uredi</button>
+                          <button type="submit" class="izbriši-tipka">Obriši</button>
+  
+                        </div>
+                      </td>
+                    </tr> 
+                    <tr>
+                      <td>Lorem ipsum dolor sit amet</td>
+                      <td>Maria Anders</td>
+                      <td>
+                        <div class="tipke">
                         <button type="submit" class="uredi">Uredi</button>
-                        <button type="submit" class="izbriši-tipka">Obriši</button>
-
-                      </div>
-                    </td>
-                  </tr> 
-                  <tr>
-                    <td>Lorem ipsum dolor sit amet</td>
-                    <td>Maria Anders</td>
-                    <td>
-                      <div class="tipke">
-                      <button type="submit" class="uredi">Uredi</button>
-                      <button type="submit" class="izbriši-tipka" id="izbrisiDugme">Obriši</button>
-
-                    </div></td>
-                  </tr> -->
+                        <button type="submit" class="izbriši-tipka" id="izbrisiDugme">Obriši</button>
+  
+                      </div></td>
+                    </tr> -->
+                  
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <!--Prikazano od do-->
+  
+            <div class="sadrzaj-ispod-tabele">
+              <div class="prvi-clan">
+                <h3 >
+                  Prikazano 1 od <span id="broj-stranice">""</span> broja stranica
+                </h3>
+              </div>
+              <div class="dugmad-strana">
                 
-                  </tr>
-                </tbody>
-              </table>
+                  <button href="#" class="strelice">&#8250;</button>
+                  <a href="#">1</a>
+                  <button href="#" class="strelice">&#8249;</button>              
+              </div>
             </div>
           </div>
-          <!--Prikazano od do-->
+          
 
-          <div class="sadrzaj-ispod-tabele">
-            <div class="prvi-clan">
-              <h3 >
-                Prikazano 1 od <span id="broj-stranice">""</span>broja stranica
-              </h3>
-            </div>
-            <div class="dugmad-strana">
-              
-                <button href="#" class="strelice">&#8250;</button>
-                <a href="#">1</a>
-                <button href="#" class="strelice">&#8249;</button>              
-            </div>
-          </div>
           <!--Dugme Ispod sadržaja-->
           <div class="sredinaSadržaja ">
             <button class="dugmeDodaj" id="dodajTabelu">Dodaj</button>

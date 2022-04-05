@@ -161,6 +161,9 @@ hr {
   border: 3px solid rgb(184, 179, 179);
   border-radius: 5px;
 }
+.tabelaBody {
+  display: none;
+}
 .tabela {
   width: 100%;
   padding-top: 25px;
@@ -171,6 +174,7 @@ hr {
   font-family: system-ui;
   font-size: larger;
   overflow: auto;
+  /*display: none;*/
 }
 table {
   width: 100%;
@@ -217,6 +221,7 @@ td {
   border-radius: 11px;
   padding: 0px 18px;
   background-color: azure;
+  display: none;
 }
 .strelice:hover {
   background-color: #c6c6c6;
