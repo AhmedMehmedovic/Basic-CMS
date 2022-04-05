@@ -1,5 +1,15 @@
 "use strict";
 
+Array.prototype.insert = function (index, item) {
+  this.splice(index, 0, item);
+};
+
+Array.prototype.remove = function (from, to) {
+  var rest = this.slice((to || from) + 1 || this.length);
+  this.length = from < 0 ? this.length + from : from;
+  return this.push.apply(this, rest);
+};
+
 if (cookie.getItem("sesija") !== "ulogovan") {
   window.location.href = "http://127.0.0.1:5500/Login/login.html";
 }
@@ -89,7 +99,7 @@ spremiKreirajRed.addEventListener("click", function (e) {
   kreirajRed(sadrzajModal.value, datumModal.value);
 });
 
-function kreirajRed(biljeska, datum, spremiStorage = true) {
+function kreirajRed(biljeska, datum, spremiStorage = true, dbID = false) {
   const tabelaBody = document.getElementById("tabelaBody");
 
   //let brojacReda = tabelaBody.rows.length;
@@ -99,10 +109,12 @@ function kreirajRed(biljeska, datum, spremiStorage = true) {
     return 0;
   }
 
+  let editRow = false;
   let rowIndex = 0;
   let editId = document.getElementById("edit-row-id");
 
   if (editId && editId.value != "") {
+    editRow = editId.value;
     let trs = tabelaBody.getElementsByTagName("tr");
 
     for (var i = 0; i < trs.length; i++) {
@@ -116,7 +128,7 @@ function kreirajRed(biljeska, datum, spremiStorage = true) {
     editId.value = "";
   }
 
-  let uniqueID = Math.random() * 10;
+  let uniqueID = dbID === false ? Math.random() * 10 : dbID;
 
   let tabelaRed = tabelaBody.insertRow(rowIndex);
   tabelaRed.setAttribute("id", uniqueID);
@@ -140,11 +152,19 @@ function kreirajRed(biljeska, datum, spremiStorage = true) {
       biljeskaLokal = JSON.parse(biljeskaLokal);
     }
 
-    biljeskaLokal.push({
+    biljeskaLokal.insert(rowIndex, {
       biljeska: biljeska,
       datum: datum,
       uniqueID: uniqueID,
     });
+
+    for (let index = 0; index < biljeskaLokal.length; index++) {
+      const biljeskaBaza = biljeskaLokal[index]; //editRow
+
+      if (biljeskaBaza.uniqueID == editRow) {
+        biljeskaLokal.remove(index);
+      }
+    }
 
     localStorage.setItem("biljeskaLokal", JSON.stringify(biljeskaLokal));
   }
@@ -165,7 +185,26 @@ function kreirajRed(biljeska, datum, spremiStorage = true) {
     .querySelector("button.izbrisi-tipka")
     .addEventListener("click", function (e) {
       if (confirm("Obrisati?")) {
-        e.target.parentNode.parentNode.parentNode.remove();
+        let target = e.target;
+
+        let biljeskaLokal = localStorage.getItem("biljeskaLokal");
+
+        if (biljeskaLokal == null) {
+          biljeskaLokal = [];
+        } else {
+          biljeskaLokal = JSON.parse(biljeskaLokal);
+        }
+
+        for (let index = 0; index < biljeskaLokal.length; index++) {
+          const biljeskaBaza = biljeskaLokal[index]; //editRow
+
+          if (biljeskaBaza.uniqueID == target.dataset.rowId) {
+            biljeskaLokal.remove(index);
+          }
+        }
+        localStorage.setItem("biljeskaLokal", JSON.stringify(biljeskaLokal));
+
+        target.parentNode.parentNode.parentNode.remove();
       }
     });
 
@@ -350,12 +389,12 @@ function ucitajPodatkeLokal() {
   let sadrzajBiljeske = localStorage.getItem("biljeskaLokal");
 
   if (sadrzajBiljeske !== null) {
-    sadrzajBiljeske = JSON.parse(sadrzajBiljeske);
+    sadrzajBiljeske = JSON.parse(sadrzajBiljeske).reverse();
 
     for (let i = 0; i < sadrzajBiljeske.length; i++) {
       const data = sadrzajBiljeske[i];
 
-      kreirajRed(data.biljeska, data.datum, false);
+      kreirajRed(data.biljeska, data.datum, false, data.uniqueID);
 
       //console.log("Bilješka: " + data.biljeska + " Datum: " + data.datum);
     }

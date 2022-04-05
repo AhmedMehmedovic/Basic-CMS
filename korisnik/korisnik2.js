@@ -145,7 +145,10 @@ forma.addEventListener("submit", function (e) {
     ispisiPoruku("Adresa mora imati manje od 15 karaktera");
   }
 
-  if (!tempVrijednosti.telefon.match(/^(\+)(387)/)) {
+  if (!tempVrijednosti.telefon.match(/^(\+)(387)+\d{1,10}/)) {
+    ispisiPoruku("Broja mora biti u formatu +387...");
+  }
+  if (!tempVrijednosti.telefon.match(/\d{1,10}/)) {
     ispisiPoruku("Broja mora biti u formatu +387...");
   }
 
