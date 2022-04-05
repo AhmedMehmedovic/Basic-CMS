@@ -117,6 +117,7 @@ function kreirajRed() {
 
   let tabelaRed = tabelaBody.insertRow(rowIndex);
   tabelaRed.setAttribute("id", uniqueID);
+
   let kolona1 = tabelaRed.insertCell(0);
   let kolona2 = tabelaRed.insertCell(1);
   let kolona3 = tabelaRed.insertCell(2);
@@ -183,7 +184,133 @@ document
 
     if (tempBrojRedova !== brojRedova) {
       brojRedova = tempBrojRedova;
-
-      console.log(brojRedova);
+      pagination();
     }
+  });
+
+let brojStranica;
+///////
+function pagination() {
+  let izabraniPrikaz = document.getElementsByClassName("broj-prikaza")[0].value;
+
+  brojStranica = Math.ceil(brojRedova / izabraniPrikaz);
+
+  document.getElementById("broj-stranice").innerHTML = brojStranica;
+
+  let tabelaRedovi = document.getElementById("tabelaBody");
+  tabelaRedovi.querySelector("tr").style.display = "none";
+  paginationDugmad(brojStranica);
+
+  let trenutnaStranica =
+    document.getElementsByClassName("dugmad-strana")[0].children[1].innerHTML;
+
+  prikazRedova(trenutnaStranica);
+}
+
+// Funkcija paginacija
+function paginationDugmad(brojStranica) {
+  let dugmad = document.getElementsByClassName("dugmad-strana")[0];
+
+  let sljedeca = dugmad.children[0];
+  let stranica = dugmad.children[1];
+  let prethodna = dugmad.children[2];
+
+  if (stranica.innerHTML > 1) {
+    prethodna.style.display = "flex";
+  } else {
+    prethodna.style.display = "none";
+  }
+
+  if (brojStranica > 1) {
+    sljedeca.style.display = "flex";
+  } else {
+    sljedeca.style.display = "none";
+  }
+}
+
+let dugmad = document.getElementsByClassName("dugmad-strana")[0];
+
+let sljedeca = dugmad.children[0];
+let stranica = dugmad.children[1];
+let prethodna = dugmad.children[2];
+
+prethodna.addEventListener("click", function (e) {
+  let trenutnaStranica =
+    document.getElementsByClassName("dugmad-strana")[0].children[1].innerHTML;
+  e.preventDefault();
+  e.stopImmediatePropagation();
+  if (trenutnaStranica > 1) {
+    stranica.innerHTML--;
+    trenutnaStranica--;
+  }
+
+  if (trenutnaStranica > 1) {
+    prethodna.style.display = "flex";
+  } else {
+    prethodna.style.display = "none";
+  }
+
+  if (brojStranica > 1) {
+    sljedeca.style.display = "flex";
+  } else {
+    sljedeca.style.display = "none";
+  }
+  prikazRedova(trenutnaStranica);
+});
+
+sljedeca.addEventListener("click", function (e) {
+  let trenutnaStranica =
+    document.getElementsByClassName("dugmad-strana")[0].children[1].innerHTML;
+  e.preventDefault();
+  if (trenutnaStranica < brojStranica) {
+    stranica.innerHTML++;
+    trenutnaStranica++;
+  }
+
+  if (trenutnaStranica > 1) {
+    prethodna.style.display = "flex";
+  } else {
+    prethodna.style.display = "none";
+  }
+
+  if (brojStranica > 1 && trenutnaStranica < brojStranica) {
+    sljedeca.style.display = "flex";
+  } else {
+    sljedeca.style.display = "none";
+  }
+  prikazRedova(trenutnaStranica);
+});
+
+function prikazRedova(stranica) {
+  let izabraniPrikaz = document.getElementsByClassName("broj-prikaza")[0].value;
+  let zadnjiRed = stranica * izabraniPrikaz;
+  let prviRed = zadnjiRed - izabraniPrikaz;
+
+  let tabelaRedovi = document
+    .getElementById("tabelaBody")
+    .querySelectorAll("tr");
+
+  for (let index = 0; index < tabelaRedovi.length; index++) {
+    const red = tabelaRedovi[index];
+
+    if (index >= prviRed && index < zadnjiRed) {
+      red.style.display = "table-row";
+    } else {
+      red.style.display = "none";
+    }
+  }
+}
+
+document
+  .getElementsByClassName("broj-prikaza")[0]
+  .addEventListener("change", function (e) {
+    let trenutnaStranica =
+      document.getElementsByClassName("dugmad-strana")[0].children[1].innerHTML;
+    prikazRedova(trenutnaStranica);
+
+    let izabraniPrikaz =
+      document.getElementsByClassName("broj-prikaza")[0].value;
+    brojStranica = Math.ceil(brojRedova / izabraniPrikaz);
+    document.getElementById("broj-stranice").innerHTML = brojStranica;
+    paginationDugmad(brojStranica);
   });
