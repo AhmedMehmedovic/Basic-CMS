@@ -85,13 +85,16 @@ function zatvorimodal() {
 let spremiKreirajRed = document.querySelector("button.spremi");
 
 //spremiKreirajRed.addEventListener("click", kreirajRed);
-spremiKreirajRed.addEventListener("click", kreirajRed);
-function kreirajRed() {
+spremiKreirajRed.addEventListener("click", function (e) {
+  kreirajRed(sadrzajModal.value, datumModal.value);
+});
+
+function kreirajRed(biljeska, datum, spremiStorage = true) {
   const tabelaBody = document.getElementById("tabelaBody");
 
   //let brojacReda = tabelaBody.rows.length;
   //let brojacKolona = tabelaBody.rows[1].cells.length
-  if (sadrzajModal.value == "") {
+  if (biljeska == "") {
     ispisiPoruku("Polje unosa bilješke mora biti ispunjeno.");
     return 0;
   }
@@ -124,10 +127,30 @@ function kreirajRed() {
 
   kolona1.innerHTML =
     '<textarea type="text" class="unosteksta"  disabled style ="color : black">' +
-    sadrzajModal.value +
+    biljeska +
     "</textarea>";
+  ///////////////////////////////
+  if (spremiStorage) {
+    let biljeskaLokal = localStorage.getItem("biljeskaLokal");
 
-  kolona2.innerHTML = datumModal.value;
+    if (biljeskaLokal == null) {
+      console.warn(biljeskaLokal);
+      biljeskaLokal = [];
+    } else {
+      biljeskaLokal = JSON.parse(biljeskaLokal);
+    }
+
+    biljeskaLokal.push({
+      biljeska: biljeska,
+      datum: datum,
+      uniqueID: uniqueID,
+    });
+
+    localStorage.setItem("biljeskaLokal", JSON.stringify(biljeskaLokal));
+  }
+
+  /////
+  kolona2.innerHTML = datum;
   kolona3.innerHTML =
     '<div class="tipke">' +
     '<button type="submit" data-row-id="' +
@@ -155,8 +178,10 @@ function kreirajRed() {
       let row = document.getElementById(rowId);
       ///
       datumModal.value = preuzmiDatum();
+
       ///
       sadrzajModal.value = row.querySelector("textarea").value;
+
       //datumModal.value = row.querySelector("td:nth-child(2)").innerHTML;
 
       let editIdInput = document.getElementById("edit-row-id");
@@ -189,6 +214,7 @@ document
   });
 
 let brojStranica;
+
 ///////
 function pagination() {
   let izabraniPrikaz = document.getElementsByClassName("broj-prikaza")[0].value;
@@ -314,3 +340,24 @@ document
     document.getElementById("broj-stranice").innerHTML = brojStranica;
     paginationDugmad(brojStranica);
   });
+
+/// Funkcija pretrazivanja
+
+let drugoDodaj = document.getElementById("dodajTabelu");
+
+drugoDodaj.onclick = ucitajPodatkeLokal();
+function ucitajPodatkeLokal() {
+  let sadrzajBiljeske = localStorage.getItem("biljeskaLokal");
+
+  if (sadrzajBiljeske !== null) {
+    sadrzajBiljeske = JSON.parse(sadrzajBiljeske);
+
+    for (let i = 0; i < sadrzajBiljeske.length; i++) {
+      const data = sadrzajBiljeske[i];
+
+      kreirajRed(data.biljeska, data.datum, false);
+
+      //console.log("Bilješka: " + data.biljeska + " Datum: " + data.datum);
+    }
+  }
+}
