@@ -409,6 +409,9 @@ document.addEventListener("DOMContentLoaded", ucitajPodatkeLokal());
 
 let unosPretrage = document.getElementsByClassName("trazilica");
 unosPretrage.addEventListener("keyup", pretraga());
+
+/* funkcija za pretragu sadrzaja ne zavrsena
+
 function pretraga() {
   let unosPretrage = document.getElementsByClassName("trazilica").value;
   //unosPretrage = unosPretrage.toLowerCase();
@@ -425,3 +428,4 @@ function pretraga() {
     }
   }
 }
+*/
