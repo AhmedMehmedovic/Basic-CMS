@@ -384,7 +384,11 @@ document
 
 let drugoDodaj = document.getElementById("dodajTabelu");
 
-drugoDodaj.onclick = ucitajPodatkeLokal();
+//drugoDodaj.onclick = ucitajPodatkeLokal();
+drugoDodaj.addEventListener("click", function () {
+  modal.style.display = "flex";
+  datumModal.value = preuzmiDatum();
+});
 function ucitajPodatkeLokal() {
   let sadrzajBiljeske = localStorage.getItem("biljeskaLokal");
 
@@ -397,6 +401,27 @@ function ucitajPodatkeLokal() {
       kreirajRed(data.biljeska, data.datum, false, data.uniqueID);
 
       //console.log("Bilješka: " + data.biljeska + " Datum: " + data.datum);
+    }
+  }
+}
+
+document.addEventListener("DOMContentLoaded", ucitajPodatkeLokal());
+
+let unosPretrage = document.getElementsByClassName("trazilica");
+unosPretrage.addEventListener("keyup", pretraga());
+function pretraga() {
+  let unosPretrage = document.getElementsByClassName("trazilica").value;
+  //unosPretrage = unosPretrage.toLowerCase();
+
+  let xbiljeska = localStorage.getItem("biljeskaLokal");
+  xbiljeska = JSON.parse(biljeskaLokal);
+
+  for (let i = 0; i < xbiljeska.length; i++) {
+    const x = xbiljeska[i];
+    if (!x.innerHTML.toLowerCase().includes(unosPretrage)) {
+      x.style.display = "none";
+    } else {
+      x.style.display = "list-item";
     }
   }
 }
