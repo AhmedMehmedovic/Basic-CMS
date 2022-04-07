@@ -6,10 +6,16 @@ if (cookie.getItem("sesija") == "ulogovan") {
 
 //const Cookies = require("cookies");
 
-const email = "herceg@dooherceg.ba";
-const sifra = "herceg123";
-const emailLokal = localStorage.getItem("Email");
-const sifraLokal = localStorage.getItem("Sifra");
+if (localStorage.getItem("Email") == null) {
+  localStorage.setItem("Email", "herceg@dooherceg.ba");
+}
+
+if (localStorage.getItem("Sifra") == null) {
+  localStorage.setItem("Sifra", md5("herceg123"));
+}
+
+const email = localStorage.getItem("Email");
+const sifra = localStorage.getItem("Sifra");
 
 let tacanUnos = true;
 /////MODAL ////
@@ -57,22 +63,8 @@ function dugmePrijava() {
     ispisiPoruku("Šifra mora imati manje od 10 karaktera");
   }
   //let sifraLokS = localStorage.getItem("Sifra").value;
-  if (emailLokal == unosEmail && sifraLokal == unosSifra) {
-    //localStorage.setItem("Email", unosEmail);
-    //localStorage.setItem("Sifra", unosSifra);
-
-    if (zapamti == true) {
-      cookie.setItem("sesija", "ulogovan", 30);
-    } else {
-      cookie.setItem("sesija", "ulogovan");
-    }
-    window.location.href = "http://127.0.0.1:5500/index/index.html";
-  } else if (email == unosEmail && sifra == unosSifra) {
-    if (zapamti == true) {
-      cookie.setItem("sesija", "ulogovan", 30);
-    } else {
-      cookie.setItem("sesija", "ulogovan");
-    }
+  if (email == unosEmail && sifra == md5(unosSifra)) {
+    cookie.setItem("sesija", "ulogovan", zapamti ? 30 : false);
     window.location.href = "http://127.0.0.1:5500/index/index.html";
   } else {
     ispisiPoruku("Prijava nije uspjela!");

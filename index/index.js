@@ -239,12 +239,16 @@ function kreirajRed(biljeska, datum, spremiStorage = true, dbID = false) {
 }
 
 // Uzimanje broja redova
-let brojRedova = document.getElementById("tabelaBody").children.length;
+let brojRedova = document
+  .getElementById("tabelaBody")
+  .querySelectorAll("tr:not(.hidden)");
 
 document
   .getElementById("tabelaBody")
   .addEventListener("DOMSubtreeModified", function (e) {
-    let tempBrojRedova = document.getElementById("tabelaBody").children.length;
+    let tempBrojRedova = document
+      .getElementById("tabelaBody")
+      .querySelectorAll("tr:not(.hidden)").length;
 
     if (tempBrojRedova !== brojRedova) {
       brojRedova = tempBrojRedova;
@@ -255,10 +259,11 @@ document
 let brojStranica;
 
 ///////
-function pagination() {
+function pagination(brojRedovaUlaz = false) {
+  brojRedovaUlaz = brojRedovaUlaz === false ? brojRedova : brojRedovaUlaz;
   let izabraniPrikaz = document.getElementsByClassName("broj-prikaza")[0].value;
 
-  brojStranica = Math.ceil(brojRedova / izabraniPrikaz);
+  brojStranica = Math.ceil(brojRedovaUlaz / izabraniPrikaz);
 
   document.getElementById("broj-stranice").innerHTML = brojStranica;
 
@@ -353,7 +358,7 @@ function prikazRedova(stranica) {
 
   let tabelaRedovi = document
     .getElementById("tabelaBody")
-    .querySelectorAll("tr");
+    .querySelectorAll("tr:not(.hidden)");
 
   for (let index = 0; index < tabelaRedovi.length; index++) {
     const red = tabelaRedovi[index];
@@ -405,27 +410,39 @@ function ucitajPodatkeLokal() {
   }
 }
 
-document.addEventListener("DOMContentLoaded", ucitajPodatkeLokal());
+document.addEventListener("DOMContentLoaded", ucitajPodatkeLokal);
 
-let unosPretrage = document.getElementsByClassName("trazilica");
-unosPretrage.addEventListener("keyup", pretraga());
+document
+  .querySelector('input[type="search"]')
+  .addEventListener("keyup", function (e) {
+    let value = e.target.value;
 
-/* funkcija za pretragu sadrzaja ne zavrsena
-
-function pretraga() {
-  let unosPretrage = document.getElementsByClassName("trazilica").value;
-  //unosPretrage = unosPretrage.toLowerCase();
-
-  let xbiljeska = localStorage.getItem("biljeskaLokal");
-  xbiljeska = JSON.parse(biljeskaLokal);
-
-  for (let i = 0; i < xbiljeska.length; i++) {
-    const x = xbiljeska[i];
-    if (!x.innerHTML.toLowerCase().includes(unosPretrage)) {
-      x.style.display = "none";
-    } else {
-      x.style.display = "list-item";
+    let htmlred = tabelaBody.querySelectorAll("tr");
+    for (let i = 0; i < htmlred.length; i++) {
+      const red = htmlred[i];
+      red.classList.remove("hidden");
     }
-  }
-}
-*/
+
+    htmlred = tabelaBody.querySelectorAll("tr:not(.hidden)");
+    //console.log(redovi[0].biljeska);
+
+    for (let i = 0; i < htmlred.length; i++) {
+      const red = htmlred[i];
+      const note = red.querySelector("textarea").value;
+
+      if (value == "") {
+        red.classList.remove("hidden");
+        continue;
+      }
+
+      if (!note.includes(value)) {
+        red.classList.add("hidden");
+      } else {
+        red.classList.remove("hidden");
+      }
+    }
+    let tempBrojRedova = document
+      .getElementById("tabelaBody")
+      .querySelectorAll("tr:not(.hidden)").length;
+    pagination(tempBrojRedova);
+  });

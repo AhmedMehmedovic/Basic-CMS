@@ -40,7 +40,7 @@ document.getElementById("otkaziUnos").addEventListener("click", otkaziUnos);
 let spremiVrijednosti = function () {
   let tempVrijednosti = preuzmiVrijednosti();
   if (tempVrijednosti.novaSifra != "") {
-    localStorage.setItem("Sifra", tempVrijednosti.novaSifra);
+    localStorage.setItem("Sifra", md5(tempVrijednosti.novaSifra));
   }
   localStorage.setItem("Email", tempVrijednosti.email);
   localStorage.setItem("Ime_korisnika", tempVrijednosti.ime);
@@ -116,7 +116,7 @@ forma.addEventListener("submit", function (e) {
       }
     }
 
-    if (tempVrijednosti.pasw != tempVrijednosti.trenutnaSifraULokal) {
+    if (md5(tempVrijednosti.pasw) != tempVrijednosti.trenutnaSifraULokal) {
       ispisiPoruku("Niste unijeli ispravnu staru šifru");
     }
   }
